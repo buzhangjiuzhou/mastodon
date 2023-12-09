@@ -21,4 +21,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: buzhangjiuzhou/mastodon:v4.2.1
+          tags: buzhangjiuzhou/mastodon:v4.2.3
