@@ -27,7 +27,7 @@ jobs:
 
   build-image-streaming:
     if: startsWith(github.ref, 'refs/tags/v4.3.')
-    uses: ./.github//buworkflowsild-container-image.yml
+    uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
       platforms: linux/amd64,linux/arm64
