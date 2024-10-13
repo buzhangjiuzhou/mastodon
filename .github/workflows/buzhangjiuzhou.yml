@@ -29,6 +29,6 @@ jobs:
       - name: Push to Docker Hub streaming
         uses: docker/build-push-action@v6
         with:
-          context: ./streaming/
+          context: streaming
           push: true
           tags: buzhangjiuzhou/mastodon-streaming:v4.3.0
