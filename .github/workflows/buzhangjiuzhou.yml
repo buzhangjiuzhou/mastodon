@@ -26,6 +26,8 @@ jobs:
           push: true
           provenance: false
           tags: buzhangjiuzhou/mastodon:v4.3.0
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Push to Docker Hub streaming
         uses: docker/build-push-action@v6
@@ -34,3 +36,5 @@ jobs:
           push: true
           provenance: false
           tags: buzhangjiuzhou/mastodon-streaming:v4.3.0
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
