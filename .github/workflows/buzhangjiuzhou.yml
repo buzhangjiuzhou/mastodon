@@ -24,6 +24,7 @@ jobs:
         with:
           context: .
           push: true
+          provenance: false
           tags: buzhangjiuzhou/mastodon:v4.3.0
 
       - name: Push to Docker Hub streaming
@@ -31,4 +32,5 @@ jobs:
         with:
           context: streaming
           push: true
+          provenance: false
           tags: buzhangjiuzhou/mastodon-streaming:v4.3.0
