@@ -1,40 +1,44 @@
 name: Run For buzhangjiuzhou
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   workflow_dispatch:
 
 jobs:
-  docker-build:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  build-image:
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        buzhangjiuzhou/mastodon
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: false
+      # Only tag with latest when ran against the latest stable branch
+      # This needs to be updated after each minor version release
+      flavor: |
+        latest=${{ startsWith(github.ref, 'refs/tags/v4.2.') }}
+      tags: v4.3.0
+    secrets: inherit
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          provenance: false
-          tags: buzhangjiuzhou/mastodon:v4.3.0
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Push to Docker Hub streaming
-        uses: docker/build-push-action@v6
-        with:
-          context: streaming
-          push: true
-          provenance: false
-          tags: buzhangjiuzhou/mastodon-streaming:v4.3.0
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+  build-image-streaming:
+    if: startsWith(github.ref, 'refs/tags/v4.3.')
+    uses: ./.github//buworkflowsild-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        buzhangjiuzhou/mastodon-streaming
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: false
+      # Only tag with latest when ran against the latest stable branch
+      # This needs to be updated after each minor version release
+      flavor: |
+        latest=${{ startsWith(github.ref, 'refs/tags/v4.3.') }}
+      tags: v4.3.0
+    secrets: inherit
