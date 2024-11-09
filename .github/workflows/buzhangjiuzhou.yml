@@ -16,7 +16,7 @@ jobs:
       use_native_arm64_builder: true
       push_to_images: buzhangjiuzhou/mastodon
       cache: false
-      tags: v4.3.0
+      tags: v4.3.1
     secrets: inherit
 
   build-image-streaming:
@@ -27,5 +27,5 @@ jobs:
       use_native_arm64_builder: true
       push_to_images: buzhangjiuzhou/mastodon-streaming
       cache: false
-      tags: v4.3.0
+      tags: v4.3.1
     secrets: inherit
