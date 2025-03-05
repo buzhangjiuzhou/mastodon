@@ -12,7 +12,8 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      push_to_images: buzhangjiuzhou/mastodon
+      push_to_images: |
+        buzhangjiuzhou/mastodon
       cache: false
       tags: v4.3.4
     secrets: inherit
@@ -21,7 +22,8 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      push_to_images: buzhangjiuzhou/mastodon-streaming
+      push_to_images: |
+        buzhangjiuzhou/mastodon-streaming
       cache: false
       tags: v4.3.4
     secrets: inherit
