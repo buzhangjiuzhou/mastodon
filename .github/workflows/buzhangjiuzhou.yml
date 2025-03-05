@@ -12,8 +12,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      platforms: linux/amd64
-      use_native_arm64_builder: true
       push_to_images: buzhangjiuzhou/mastodon
       cache: false
       tags: v4.3.4
@@ -23,8 +21,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      platforms: linux/amd64
-      use_native_arm64_builder: true
       push_to_images: buzhangjiuzhou/mastodon-streaming
       cache: false
       tags: v4.3.4
