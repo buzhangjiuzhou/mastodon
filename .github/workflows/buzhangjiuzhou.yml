@@ -15,7 +15,7 @@ jobs:
       push_to_images: |
         buzhangjiuzhou/mastodon
       cache: false
-      tags: v4.5.0
+      tags: v4.5.1
     secrets: inherit
 
   build-image-streaming:
@@ -25,5 +25,5 @@ jobs:
       push_to_images: |
         buzhangjiuzhou/mastodon-streaming
       cache: false
-      tags: v4.5.0
+      tags: v4.5.1
     secrets: inherit
